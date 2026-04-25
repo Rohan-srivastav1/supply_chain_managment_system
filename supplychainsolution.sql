@@ -3396,22 +3396,22 @@ WITH max_c AS (
 SELECT DISTINCT * FROM max_c 
 WHERE count IN (SELECT MAX(count) FROM max_c);
 
-### 10. Which customers did not place any orders?
+### 1. Which customers did not place any orders?
 select * from customer where id not in(select customerid from orders);
 
-### 11. Arrange the Product ID and Name based on the high demand by the customer
+### 2. Arrange the Product ID and Name based on the high demand by the customer
 select p.productname,p.id ,sum(oi.Quantity) as Totalquantity from orderitem oi
 join product p 
 on oi.productid=p.id
 group by p.productname,p.id
 order by Totalquantity desc;
 
-### 12. Display the total number of orders delivered every year
+### 3. Display the total number of orders delivered every year
 select count(id) as total_order,year(orderdate) as Year_in from orders
 group by year(orderdate)
 order by total_order desc;
 
-### 3. Calculate year-wise total revenue 
+### 4. Calculate year-wise total revenue 
 select year(orderdate) as Year_in ,round( sum(totalamount) )as total_sales from orders
 group by year(orderdate)
 order by sum(totalamount) desc;
